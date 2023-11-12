@@ -35,7 +35,6 @@ router.post("/", async (req, res) => {
 
 router.get("/checkIsPlaying", async (req, res) => {
   try {
-    // Recherchez la dernière entrée de la table "wins"
     const lastWin = await Win.findOne().sort({ _id: -1 });
 
     if (lastWin) {

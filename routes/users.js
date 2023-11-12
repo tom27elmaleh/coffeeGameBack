@@ -76,17 +76,17 @@ router.post(
 module.exports = router;
 
 //Get users
-router.get("/", async (req, res) => {
-  try {
-    const users = await User.find(); // Récupérez tous les utilisateurs de la base de données
+// router.get("/", async (req, res) => {
+//   try {
+//     const users = await User.find(); // Récupérez tous les utilisateurs de la base de données
 
-    res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({
-      message: "Erreur lors de la récupération des utilisateurs",
-      error: err,
-    });
-  }
-});
+//     res.status(200).json(users);
+//   } catch (err) {
+//     res.status(500).json({
+//       message: "Erreur lors de la récupération des utilisateurs",
+//       error: err,
+//     });
+//   }
+// });
 
 module.exports = router;

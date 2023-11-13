@@ -10,9 +10,9 @@ require("./models/connection");
 var usersRouter = require("./routes/users");
 var winsRouter = require("./routes/wins");
 
+var app = express();
 const cors = require("cors");
 app.use(cors());
-var app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 

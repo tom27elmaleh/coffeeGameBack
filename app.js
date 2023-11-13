@@ -30,8 +30,12 @@ wss.on("connection", (ws) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("Serveur WebSocket en écoute sur le port 3001");
+const PORT = process.env.PORT || 3001;
+
+// ...
+
+server.listen(PORT, () => {
+  console.log(`Serveur WebSocket en écoute sur le port ${PORT}`);
 });
 
 const cors = require("cors");

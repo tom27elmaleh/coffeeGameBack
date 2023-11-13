@@ -10,6 +10,8 @@ require("./models/connection");
 var usersRouter = require("./routes/users");
 var winsRouter = require("./routes/wins");
 
+const cors = require("cors");
+app.use(cors());
 var app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -37,9 +39,6 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Serveur WebSocket en écoute sur le port ${PORT}`);
 });
-
-const cors = require("cors");
-app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());

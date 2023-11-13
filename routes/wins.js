@@ -33,20 +33,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/checkIsPlaying", async (req, res) => {
-  try {
-    const lastWin = await Win.findOne().sort({ _id: -1 });
-
-    if (lastWin) {
-      const isPlaying = lastWin.isPlaying;
-      res.status(200).json({ isPlaying });
-    } else {
-      res.status(404).send("Aucune entrée trouvée dans la table 'wins'.");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Une erreur s'est produite.");
-  }
-});
-
 module.exports = router;

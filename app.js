@@ -1,4 +1,6 @@
 require("dotenv").config();
+const WebSocket = require("ws");
+const http = require("http");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -9,6 +11,28 @@ var usersRouter = require("./routes/users");
 var winsRouter = require("./routes/wins");
 
 var app = express();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+wss.on("connection", (ws) => {
+  console.log("Client connecté");
+
+  // Écoute des messages du client (téléphone)
+  // Écoute des messages du client (téléphone)
+  ws.on("message", (message) => {
+    // Diffuse le message (formulaire validé) à tous les clients connectés
+    wss.clients.forEach((client) => {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        // Envoie une chaîne de texte plutôt qu'un objet Blob
+        client.send("formOK");
+      }
+    });
+  });
+});
+
+server.listen(3001, () => {
+  console.log("Serveur WebSocket en écoute sur le port 3001");
+});
 
 const cors = require("cors");
 app.use(cors());
